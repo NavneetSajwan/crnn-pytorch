@@ -254,15 +254,9 @@ if __name__ == "__main__":
             cost = train(crnn, criterion, optimizer, train_iter)
             loss_avg.add(cost)
             i += 1
-
-            if i % params.displayInterval == 0:
-                print('[%d/%d][%d/%d] Loss: %f' %
-                      (epoch, params.nepoch, i, len(train_loader), loss_avg.val()))
-                loss_avg.reset()
-
-            if i % params.valInterval == 0:
-                val(crnn, criterion)
-
-            # do checkpointing
-            if i % params.saveInterval == 0:
-                torch.save(crnn.state_dict(), '{0}/netCRNN_{1}_{2}.pth'.format(params.expr_dir, epoch, i))
+        print('[%d/%d][%d/%d] Loss: %f' % (epoch, params.nepoch, i, len(train_loader), loss_avg.val()))
+        loss_avg.reset()
+        val(crnn, criterion)
+        if epoch % params.saveInterval == 0:
+            torch.save(crnn.state_dict(), '{0}/netCRNN_{1}.pth'.format(params.expr_dir, epoch))
+            
