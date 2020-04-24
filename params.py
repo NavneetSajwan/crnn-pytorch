@@ -22,13 +22,13 @@ workers = 0 # number of data loading workers
 # training process
 displayInterval = 100 # interval to be print the train loss
 valInterval = 1000 # interval to val the model loss and accuray
-saveInterval = 1000 # interval to save model
-n_val_disp = 10 # number of samples to display when val the model
+saveInterval = 100 # interval to save model
+n_val_disp = 5 # number of samples to display when val the model
 
 # finetune
-nepoch = 1000 # number of epochs to train for
-batchSize = 64 # input batch size
-lr = 0.0001 # learning rate for Critic, not used by adadealta
+nepoch = 500 # number of epochs to train for
+batchSize = 256 # input batch size
+lr = 0.0005 # learning rate for Critic, not used by adadealta
 beta1 = 0.5 # beta1 for adam. default=0.5
-adam = False # whether to use adam (default is rmsprop)
+adam = True # whether to use adam (default is rmsprop)
 adadelta = False # whether to use adadelta (default is rmsprop)
