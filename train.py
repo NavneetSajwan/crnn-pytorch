@@ -41,9 +41,16 @@ if torch.cuda.is_available() and not params.cuda:
 In this block
     Get train and val data_loader
 """
+
+transform_train= transforms.Compose([
+#                                     transforms.ToPILImage(),
+                                     transforms.RandomRotation(5),
+#                                     transforms.ToTensor(),
+                                    transforms.Normalize(),)
+
 def data_loader():
     # train
-    train_dataset = dataset.lmdbDataset(root=args.trainroot)
+    train_dataset = dataset.lmdbDataset(root=args.trainroot, transform = transforms_train)
     assert train_dataset
     if not params.random_sample:
         sampler = dataset.randomSequentialSampler(train_dataset, params.batchSize)
